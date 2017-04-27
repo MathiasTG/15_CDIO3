@@ -3,6 +3,8 @@ package DTO;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Operatoer Data Access Objekt
  * 
@@ -28,15 +30,16 @@ public class UserDTO implements Serializable{
 	private String cpr;
 	/** Bruger password min. 7 max. 8 karakterer */
 	private String password;
-	private List<RoleDTO> roles;
+	
+	private RoleDTO role;
 
-	public UserDTO(int userId, String userName, String ini, String cpr, String password, List<RoleDTO> roles) {
+	public UserDTO(int userId, String userName, String ini, String cpr, String password, RoleDTO roles) {
 		this.userId = userId;
 		this.userName = userName;
 		this.ini = ini;
 		this.cpr = cpr;
 		this.password = password;
-		this.roles = roles;
+		this.role = roles;
 	}
 
 //	public UserDTO(UserDTO user) {
@@ -47,7 +50,8 @@ public class UserDTO implements Serializable{
 //		this.password = user.getPassword();
 //		this.roles = user.getRoles();
 //	}
-
+	
+	@JsonProperty("userId")
 	public int getUserId() {
 		return userId;
 	}
@@ -55,7 +59,7 @@ public class UserDTO implements Serializable{
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-
+	@JsonProperty("userName")
 	public String getUserName() {
 		return userName;
 	}
@@ -63,7 +67,7 @@ public class UserDTO implements Serializable{
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
+	@JsonProperty("ini")
 	public String getIni() {
 		return ini;
 	}
@@ -71,7 +75,7 @@ public class UserDTO implements Serializable{
 	public void setIni(String ini) {
 		this.ini = ini;
 	}
-
+	@JsonProperty("cpr")
 	public String getCpr() {
 		return cpr;
 	}
@@ -79,34 +83,30 @@ public class UserDTO implements Serializable{
 	public void setCpr(String cpr) {
 		this.cpr = cpr;
 	}
-
+	@JsonProperty("password")
 	public String getPassword() {
 		return password;
-	}
-
-	public void addRole(RoleDTO role) {
-		this.roles.add(role);
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public List<RoleDTO> getRoles() {
-		return roles;
+	@JsonProperty("role")
+	public RoleDTO getRole() {
+		return role;
 	}
 
-	public void setRoles(List<RoleDTO> roles) {
-		this.roles = roles;
+	public void setRole(RoleDTO role) {
+		this.role = role;
 	}
 
 	public String toString() {
-		String roleString="["+roles.get(0).getRoleName();
-		if(roles.size()>1){
-			for(int i=1;i<roles.size();i++){
-				roleString=roleString+", "+roles.get(i).getRoleName();
-			}
-		}
+		String roleString="["+role.getRoleName();
+//		if(roles.size()>1){
+//			for(int i=1;i<roles.size();i++){
+//				roleString=roleString+", "+roles.get(i).getRoleName();
+//			}
+//		}
 		roleString=roleString+"]";
 		return "User ID:	" + userId + "\n" + "Username:	" + userName + "\n" + "Initials:	" + ini + "\n"
 				+ "Role(s):\t" + roleString + "\n" + "CPR:		" + cpr + "\n" + "Password:	" + password + "\n \n";

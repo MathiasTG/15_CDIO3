@@ -19,18 +19,17 @@ import interfacesDAO.IUserDAO;
 public class SerDALTest {
 	
 	private static IUserDAO userdao = new SerUserDAO(1);
-	private static UserDTO user1= new UserDTO(1, "user1", "u1", "010411-1452", "1ugf7&2", new ArrayList<RoleDTO>());
-	private static UserDTO user2= new UserDTO(2, "user2", "u2", "020411-1452", "2ugf7&2", new ArrayList<RoleDTO>());
-	private static UserDTO user3= new UserDTO(3, "user3", "u3", "030411-1452", "3ugf7&2", new ArrayList<RoleDTO>());
+	private static UserDTO user1= new UserDTO(1, "user1", "u1", "010411-1452", "1ugf7&2", null);
+	private static UserDTO user2= new UserDTO(2, "user2", "u2", "020411-1452", "2ugf7&2", null);
+	private static UserDTO user3= new UserDTO(3, "user3", "u3", "030411-1452", "3ugf7&2", null);
 	private static UserDTO tempUser;
 	
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		user1.addRole(new RoleDTO(1, null));
-		user1.addRole(new RoleDTO(2, null));
-		user2.addRole(new RoleDTO(3, null));
-		user3.addRole(new RoleDTO(4, null));
+		user1.setRole(new RoleDTO(2, null));
+		user2.setRole(new RoleDTO(3, null));
+		user3.setRole(new RoleDTO(4, null));
 		try {
 			userdao.createUser(user1);
 			userdao.createUser(user2);
@@ -64,13 +63,12 @@ public class SerDALTest {
 
 	@After
 	public void tearDown() throws Exception {
-		user1= new UserDTO(1, "user1", "u1", "010411-1452", "1ugf7&2", new ArrayList<RoleDTO>());
-		user2= new UserDTO(2, "user2", "u2", "020411-1452", "2ugf7&2", new ArrayList<RoleDTO>());
-		user3= new UserDTO(3, "user3", "u3", "030411-1452", "3ugf7&2", new ArrayList<RoleDTO>());
-		user1.addRole(new RoleDTO(1, null));
-		user1.addRole(new RoleDTO(2, null));
-		user2.addRole(new RoleDTO(3, null));
-		user3.addRole(new RoleDTO(4, null));
+		user1= new UserDTO(1, "user1", "u1", "010411-1452", "1ugf7&2", null);
+		user2= new UserDTO(2, "user2", "u2", "020411-1452", "2ugf7&2", null);
+		user3= new UserDTO(3, "user3", "u3", "030411-1452", "3ugf7&2", null);
+		user1.setRole(new RoleDTO(2, null));
+		user2.setRole(new RoleDTO(3, null));
+		user3.setRole(new RoleDTO(4, null));
 		
 		userdao.updateUser(user1);
 		userdao.updateUser(user2);
@@ -94,11 +92,10 @@ public class SerDALTest {
 			tempUser = userdao.getUser(1);
 			
 			
-			tempUser.addRole(new RoleDTO(3,null));
+			tempUser.setRole(new RoleDTO(3,null));
 			userdao.updateUser(tempUser);
 			
-			assertEquals(tempUser.getRoles().get(0).getRoleId(), userdao.getUser(1).getRoles().get(0).getRoleId());
-			assertEquals(tempUser.getRoles().get(1).getRoleId(), userdao.getUser(1).getRoles().get(1).getRoleId());
+			assertEquals(tempUser.getRole().getRoleId(), userdao.getUser(1).getRole().getRoleId());
 			
 		} catch (DALException e) {
 			e.printStackTrace();

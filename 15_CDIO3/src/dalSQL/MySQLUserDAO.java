@@ -47,7 +47,7 @@ public class MySQLUserDAO implements IUserDAO {
 		List<UserDTO> list = new ArrayList<UserDTO>(1);
 		int id;
 		String name, ini, cpr, password;
-		List<RoleDTO> roles = new ArrayList<RoleDTO>();
+//		List<RoleDTO> roles = new ArrayList<RoleDTO>();
 		RoleDTO role;
 
 		ResultSet rs = Connector.doQuery(SQLMapper.getStatement(1));
@@ -70,7 +70,8 @@ public class MySQLUserDAO implements IUserDAO {
 //					tempID = rs.getInt("opr_id");
 //				}
 			}
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) {
 			throw new DALException(e);
 		}
 		return list;

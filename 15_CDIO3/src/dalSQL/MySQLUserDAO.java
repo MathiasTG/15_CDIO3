@@ -79,7 +79,7 @@ public class MySQLUserDAO implements IUserDAO {
 
 	public void updateUser(UserDTO user) throws DALException {
 
-		Connector.doQuery(SQLMapper.getStatement(9)+"(" + user.getUserId() + ",'" + user.getUserName() + "', '" + user.getIni() + "','"
+		Connector.doQuery(SQLMapper.getStatement(9)+"(" + user.getUserId() + ",'" + user.getUsername() + "', '" + user.getIni() + "','"
 				+ user.getCpr() + "', '" + user.getPassword() + "'," + user.getRole().getRoleId()+")");
 //		if (user.getRole().size() > 1) {
 //			for (int i = 1; i < user.getRole().size(); i++) {
@@ -90,7 +90,7 @@ public class MySQLUserDAO implements IUserDAO {
 
 	@Override
 	public void createUser(UserDTO user) throws DALException {
-		Connector.doQuery(SQLMapper.getStatement(11)+"(" + user.getUserId() + ", '" + user.getUserName() + "', '" + user.getIni() + "', '"
+		Connector.doQuery(SQLMapper.getStatement(11)+"(" + user.getUserId() + ", '" + user.getUsername() + "', '" + user.getIni() + "', '"
 				+ user.getCpr() + "', '" + user.getPassword() + "', " + user.getRole().getRoleId()+")");
 //		if (user.getRole().size() > 1) {
 //			for (int i = 1; i < user.getRole().size(); i++) {

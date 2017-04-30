@@ -1,10 +1,7 @@
 package DTO;
 
 import java.io.Serializable;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 /**
  * Operatoer Data Access Objekt
  * 
@@ -21,21 +18,18 @@ public class UserDTO implements Serializable{
 	 * Bruger-identifikationsnummer (user_id) i omraadet 11-99. Vaelges
 	 * af brugerne
 	 */
-	private int userId;
-	/** Bruger navn (user_name) min. 2 max. 20 karakterer */
-	private String userName;
-	/** Bruger-initialer min. 2 max. 3 karakterer */
-	private String ini;
-	/** Brugers cpr-nr 10 karakterer */
-	private String cpr;
-	/** Bruger password min. 7 max. 8 karakterer */
-	private String password;
+	@JsonProperty("userId") private int userId;
+	@JsonProperty("username") private String username;
+	@JsonProperty("ini") private String ini;
+	@JsonProperty("cpr") private String cpr;
+	@JsonProperty("password") private String password;
+	@JsonProperty("role") private RoleDTO role;
 	
-	private RoleDTO role;
+	public UserDTO(){}
 
-	public UserDTO(int userId, String userName, String ini, String cpr, String password, RoleDTO roles) {
+	public UserDTO(int userId, String username, String ini, String cpr, String password, RoleDTO roles) {
 		this.userId = userId;
-		this.userName = userName;
+		this.username = username;
 		this.ini = ini;
 		this.cpr = cpr;
 		this.password = password;
@@ -59,13 +53,13 @@ public class UserDTO implements Serializable{
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	@JsonProperty("userName")
-	public String getUserName() {
-		return userName;
+	@JsonProperty("username")
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	@JsonProperty("ini")
 	public String getIni() {
@@ -108,7 +102,7 @@ public class UserDTO implements Serializable{
 //			}
 //		}
 		roleString=roleString+"]";
-		return "User ID:	" + userId + "\n" + "Username:	" + userName + "\n" + "Initials:	" + ini + "\n"
-				+ "Role(s):\t" + roleString + "\n" + "CPR:		" + cpr + "\n" + "Password:	" + password + "\n \n";
+		return "User ID:	" + userId + "\n" + "Username:	" + username + "\n" + "Initials:	" + ini + "\n"
+			+ "CPR:		" + cpr + "\n"+ "Password:	" + password + "\n"+"Role(s):\t" + roleString + "\n" ;
 	}
 }

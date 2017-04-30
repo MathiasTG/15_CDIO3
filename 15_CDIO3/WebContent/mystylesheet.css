@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+
+#dtuLogo2{
+	width:81px;
+	height:118.5px;
+}
+
+form {
+	line-height: 1.5;
+}
+a{
+	font-family: "Calibri", "Times New Roman",serif;
+}
+table {
+	border-collapse: collapse; 
+	width: 100%;
+}
+tr:nth-child(odd) {
+	background-color: #d0d3d8;
+}
+tr:nth-child(1), tr:nth-child(2),td:nth-child(9){
+	background-color: white;
+}
+
+th, td {
+	font-family: "Calibri", "Times New Roman",serif;
+	border: 2px solid black;
+	text-align: left;
+}
+#div01{
+	position: relative;
+	width:400px;
+	margin:auto;
+	border:2px solid black;
+	border-style: solid;
+	border-radius:25px;
+	box-shadow: 10px 10px 5px grey;
+	padding: 10px;
+	text-align:center;
+}
+h1,h2{
+	margin:auto;
+	font-family: "Calibri", "Times New Roman",serif;
+}
+#div01 form{
+	margin:auto;
+	font-family: "Calibri", "Times New Roman",serif ;
+	line-height: 1.5;
+}
+#div01 input[type="submit"]{
+	background-color:#96a1ff;
+}
+
+

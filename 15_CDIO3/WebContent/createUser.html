@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CreateUser</title>
+	<link rel="stylesheet" type="text/css" href="mystylesheet.css">
+	
+	<script src="jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="jqueryextra.js"> </script>
+	<script>
+	
+		function ConvertFormToJSON(form){
+			var json=form.serializeJSON();
+			return json;
+		}
+	
+		$(document).ready(function() { // Sikrer sig at dokumentet er indlæst, 
+			//før click handlers håndteres
+			$('#form2').submit(function() { //Sætter en click handler på knappen
+/* 				var formData =$('#form2').serializeJSON(); */
+				var rlid=1;
+				if($("input[name=roleName]:checked").attr('id')=="r1"){
+					rlid=1;
+				} else if($("input[name=roleName]:checked").attr('id')=="r2"){
+					rlid=2;
+				}else if($("input[name=roleName]:checked").attr('id')=="r3"){
+					rlid=3;
+				}else if($("input[name=roleName]:checked").attr('id')=="r4"){
+					rlid=4;
+				}
+				
+				var usId= $("#userId").val(); 
+				var usr = $("#username").val(); 
+				var ini = $("#ini").val();
+				var cpr = $("#cpr").val(); 
+				var psw = $("#password").val();
+				var rlnm= $('input[name=roleName]:checked','#form2').val();
+				var json = {};
+				json["userId"]=usId;
+				json["username"]=usr;
+				json["ini"]=ini;
+				json["cpr"]=cpr;
+				json["password"]=psw;
+				json["role"]={};
+				json["role"]["roleId"]=rlid;
+				json["role"]["roleName"]=rlnm;
+				
+				
+				$.ajax({ //Indleder et asynkront ajax kald
+					url : 'rest/json/createUser', //specificerer endpointet
+					data : JSON.stringify(json),
+					type : 'POST', //Typen af HTTP requestet (GET er default)
+					contentType : 'application/json',
+					success : function(data) {//Funktion der skal udføres når data er hentet
+						$('#mydiv').html(data); //Manipulerer #mydiv.
+					}
+				});
+				return false; //for at undgå at knappen poster data (default behavior).
+			});
+		});
+	</script>
+</head>
+<body>
+<div id="div01">
+	<h1>Create new user</h1>
+	<form id="form2">
+		<b>UserID:</b> <input type="number" name="userId" id="userId" min="11" max="99" required><br>
+		<b>Username:</b> <input type="text" name="username" id="username" required><br>
+		<b>Initials</b> <input type="text" name="ini" id="ini" required><br>
+		<b>CPR number</b> <input type="text" name="cpr" id="cpr" required><br>
+		<b>Password:</b> <input type="password" name="password" id="password" required><br>
+		<b>Role:</b><br>
+		Admin:<input type="radio" name="roleName" value="Admin" id="r1" required><br>
+		Pharmacist:<input type="radio" name="roleName" value="Pharmacist" id="r2"><br>
+		Produktionsleder:<input type="radio" name="roleName" value="Produktionsleder" id="r3"><br>
+		Laborant:<input type="radio" name="roleName" value="Laborant" id="r4"><br>
+		<br> 
+		<input type="submit" name="save changes" value="Gem ændringerne"><br>
+	</form>
+	<div id="mydiv">Some text</div>
+</div>
+</body>
+</html>

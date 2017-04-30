@@ -11,14 +11,15 @@ public class RoleDTO implements Serializable{
 	private static final long serialVersionUID = -9037583273597740464L;
 	private int roleId;
 	private String roleName;
+	public RoleDTO(){}
 
 	public RoleDTO(int roleId, String roleName) {
 		this.roleId = roleId;
 		this.roleName = roleName;
 	}
 
-	public void setRoleId(int id) {
-		roleId = id;
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
 	@JsonProperty("roleName")
 	public String getRoleName() {

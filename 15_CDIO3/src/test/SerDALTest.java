@@ -46,19 +46,19 @@ public class SerDALTest {
 		assertEquals(user1.getIni(),userdao.getUser(user1.getUserId()).getIni());
 		assertEquals(user1.getPassword(),userdao.getUser(user1.getUserId()).getPassword());
 //		assertEquals(user1.getRoles(),userdao.getUser(user1.getUserId()).getRoles());
-		assertEquals(user1.getUserName(),userdao.getUser(user1.getUserId()).getUserName());
+		assertEquals(user1.getUsername(),userdao.getUser(user1.getUserId()).getUsername());
 		
 		assertEquals(user2.getCpr(),userdao.getUser(user2.getUserId()).getCpr());
 		assertEquals(user2.getIni(),userdao.getUser(user2.getUserId()).getIni());
 		assertEquals(user2.getPassword(),userdao.getUser(user2.getUserId()).getPassword());
 //		assertEquals(user2.getRoles(),userdao.getUser(user2.getUserId()).getRoles());
-		assertEquals(user2.getUserName(),userdao.getUser(user2.getUserId()).getUserName());
+		assertEquals(user2.getUsername(),userdao.getUser(user2.getUserId()).getUsername());
 		
 		assertEquals(user3.getCpr(),userdao.getUser(user3.getUserId()).getCpr());
 		assertEquals(user3.getIni(),userdao.getUser(user3.getUserId()).getIni());
 		assertEquals(user3.getPassword(),userdao.getUser(user3.getUserId()).getPassword());
 //		assertEquals(user3.getRoles(),userdao.getUser(user3.getUserId()).getRoles());
-		assertEquals(user3.getUserName(),userdao.getUser(user3.getUserId()).getUserName());
+		assertEquals(user3.getUsername(),userdao.getUser(user3.getUserId()).getUsername());
 	}
 
 	@After

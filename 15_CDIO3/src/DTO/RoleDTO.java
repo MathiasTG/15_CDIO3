@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class RoleDTO implements Serializable{
 
 	/**
-	 * 
+	 * Op
 	 */
 	private static final long serialVersionUID = -9037583273597740464L;
 	private int roleId;
